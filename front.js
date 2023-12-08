@@ -1,6 +1,6 @@
 window.onload = async () => {
 
-    var apiLink = 'http://176.100.7.164:3000'
+    var apiLink = 'https://176.100.7.164:3000'
   
     if (!window.location.href.endsWith("&a=410")) {
   

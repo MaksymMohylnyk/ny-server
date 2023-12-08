@@ -1,13 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const http = require('http');
+const https = require('https');
 const mongoose = require('mongoose');
 const cors = require('cors')
 const port = process.env.PORT || 3000;
 const app = express();
 const uri = "mongodb+srv://Makson:MyStr0ngPassw0rd@sandboxcluster.qmkhiwe.mongodb.net/nydb?retryWrites=true&w=majority";
-const server = http.createServer(app);
 const routes = require('./routes.js')
+const fs = require('fs')
 
 mongoose.connect(uri);
 const database = mongoose.connection
@@ -28,6 +28,12 @@ app.use(bodyParser.json())
   
 app.use('/', routes);
 
+const options = { 
+    key: fs.readFileSync("server.key"), 
+    cert: fs.readFileSync("server.cert"), 
+  }; 
+
+const server = https.createServer(options, app);
 server.listen(port, (error) => {
     if (error) return console.log(`Error: ${error}`);
 
