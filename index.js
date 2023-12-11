@@ -29,8 +29,8 @@ app.use(bodyParser.json())
 app.use('/', routes);
 
 const options = { 
-    key: fs.readFileSync("./server.key"), 
-    cert: fs.readFileSync("./server.cert"), 
+    key: fs.readFileSync("./privkey.pem"), 
+    cert: fs.readFileSync("./fullchain.pem"), 
   }; 
 
 const server = https.createServer(options, app);
